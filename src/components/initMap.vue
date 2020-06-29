@@ -4,10 +4,11 @@
 
 <script>
 import MapType from "@/mapconfig/core/MapType";
-import addLayer from "@/mapconfig/addLayer/addLayer";
-import createSource from "@/mapconfig/addLayer/mapSource";
+import addLayer from "@/mapconfig/addlayer/addLayer";
+import createSource from "@/mapconfig/addlayer/mapSource";
 import "ol/ol.css";
 import { Map, View } from "ol";
+import { defaults } from "ol/control";
 export default {
   name: "initMap",
   props: {
@@ -29,7 +30,11 @@ export default {
     this.map = new Map({
       target: "map",
       view: view,
-      loadTilesWhileAnimating: true
+      loadTilesWhileAnimating: true,
+      controls: defaults({
+        zoom: false,
+        rotate: false
+      })
     });
     for (let i = 0, len = this.mapType.length; i < len; i++) {
       this.mapType[i] = addLayer(
@@ -43,5 +48,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

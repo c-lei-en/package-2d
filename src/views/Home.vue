@@ -1,18 +1,30 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <init-map class="home" :mapType="mapNameList"></init-map>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import initMap from "@/components/initMap";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld
+  components: { initMap },
+  data() {
+    return {
+      mapNameList: ["SATELLITE_GOOGLE"]
+    };
   }
 };
 </script>
+<style lang="scss">
+.home {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  .map {
+    height: 100%;
+  }
+}
+</style>
