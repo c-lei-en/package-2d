@@ -1,0 +1,244 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+html,
+body {
+    font-size: $font-base;
+    color: $white;
+    // min-width: 1366px;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.font-white {
+    color: $white;
+}
+
+.font-green {
+    color: $green;
+}
+
+.font-red {
+    color: $red;
+}
+
+.font-yellow {
+    color: $yellow;
+}
+
+.font-grey {
+    color: $textGreyColor;
+}
+
+
+.font-base {
+    font-size: $font-base;
+}
+
+.font-lg {
+    font-size: $font-lg;
+}
+
+.font-lgr {
+    font-size: $font-lgr;
+}
+
+.font-sm {
+    font-size: $font-sm;
+}
+
+.font-mini {
+    font-size: $font-mini;
+}
+
+.display-none {
+    display: none;
+}
+
+.border-bottom-green {
+    border-bottom: 1px solid $borderGreen;
+}
+
+.justify-center {
+    @include flex-box(null, center, null, wrap);
+}
+
+.align-center {
+    @include flex-box(null, null, center);
+}
+
+.flex-center {
+    @include flex-box(null, center, center);
+}
+
+.bg-list{
+    background-color:$bgList;
+}
+
+.flex-item{
+    flex:1;
+}
+
+// 全局修改滚动条样式
+* {
+    @include scrollBar();
+}
+
+/* ------- 重写ant样式 ------ */
+.ant-input {
+    background-color: $bgGreenDeep;
+    border-color: $borderGreen;
+}
+.ant-input-affix-wrapper,
+.ant-input {
+    color: $white;
+}
+.ant-input-search-icon,
+.ant-input-clear-icon {
+    color: $white;
+    &:hover {
+        color: $green;
+    }
+}
+
+// 弹出框
+.self-dialog.self-dialog-collapsed {
+    .ant-modal {
+        left: 220px;
+    }
+}
+.self-dialog {
+    pointer-events: none;
+    .self-dialog-box {
+        width: 100%;
+        max-height: 60vh;
+        overflow-y: scroll;
+        padding: 24px;
+    }
+    .ant-modal {
+        color: $textColor;
+        left: 100px;
+        transition: left 0.2s;
+        top:220px;
+    }
+    .ant-modal-header {
+        background-color: $bgDialogHeader;
+        color: $textHoverColor;
+        border-bottom: none;
+    }
+    .ant-modal-title {
+        color: inherit;
+        text-align: center;
+    }
+    .ant-modal-content {
+        background-color: $bgDialog;
+        border: 2px solid $borderGreen;
+    }
+    .ant-modal-close {
+        color: inherit;
+    }
+    .ant-modal-body {
+        position: relative;
+        padding: 0;
+        .rect-angel {
+            @include rectAngel(4px, -54px);
+        }
+    }
+}
+
+// tab
+.self-tab {
+    color: $textColor;
+    .ant-tabs-bar {
+        border-bottom: none;
+        text-align: center;
+    }
+    .ant-tabs-nav {
+        color: $textColor;
+        background-color: $bgDialogHeader;
+        border-radius: $borderRadius;
+        .ant-tabs-tab {
+            margin-right: 0;
+            padding: 6px 20px;
+            color: $textHoverColor;
+            border-right: 0.5px solid $bgList;
+            &:hover {
+                color: $textColor;
+            }
+            &:first-child {
+                border-radius: $borderRadius 0 0 $borderRadius;
+            }
+            &:last-child {
+                border-radius: 0 $borderRadius $borderRadius 0;
+                border-right: none;
+            }
+        }
+        .ant-tabs-tab-active {
+            background-color: $bgList;
+            color: $textColor;
+            font-weight: 400;
+        }
+    }
+    .ant-tabs-ink-bar {
+        display: none !important;
+    }
+}
+
+// loading
+.ant-spin {
+    color: $green;
+    font-size: $font-base;
+}
+.ant-spin-dot-item {
+    background-color: $green;
+}
+
+// 表格
+.self-table {
+    .ant-table-placeholder{
+        background-color:$transparent;
+        color:$textHoverColor;
+        border-top:none;
+        .ant-empty-normal{
+            color:$textHoverColor;
+        }
+    }
+    .ant-table-row {
+        color: $textColor;
+    }
+    .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+    .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+    .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+    .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+        background: $bgListHover;
+    }
+    .ant-table-thead > tr > th {
+        color: $textColor;
+        background-color: $bgList !important;
+        border-color: $borderGrey !important;
+    }
+    .ant-table,
+    .ant-table-bordered .ant-table-content,
+    .ant-table-tbody > tr > td,
+    .ant-table-bordered .ant-table-body > table {
+        border-color: $borderGrey;
+    }
+    .ant-pagination,
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-jump-prev,
+    .ant-pagination-jump-next {
+        color: $textColor;
+        a {
+            color: $textColor;
+        }
+    }
+    .ant-pagination-simple .ant-pagination-simple-pager input{
+        background-color:$bgList;
+        border-color:$borderGreenDeep;
+    }
+    .ant-table-body{
+        margin:0!important;
+    }
+}
