@@ -1,5 +1,6 @@
 import { Tile, Image, Vector } from "ol/layer";
 import { createStyle } from "./mapStyle";
+
 /**
  * 创建地图图层
  * @param {string} type

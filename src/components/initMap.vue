@@ -1,16 +1,21 @@
 <template>
-  <div id="map" style="height:100%;width:100%"></div>
+  <div id="map" style="height:100%;width:100%">
+    <rotate :map="map" id="rotate"></rotate>
+  </div>
 </template>
 
 <script>
 import MapType from "@/mapconfig/core/MapType";
 import addLayer from "@/mapconfig/addlayer/addLayer";
 import createSource from "@/mapconfig/addlayer/mapSource";
-import "ol/ol.css";
 import { Map, View } from "ol";
-import { defaults } from "ol/control";
+import { defaults /**ScaleLine*/ } from "ol/control";
+import rotate from "./rotate";
 export default {
   name: "initMap",
+  components: {
+    rotate
+  },
   props: {
     mapType: Array
   },
@@ -36,6 +41,10 @@ export default {
         rotate: false
       })
     });
+    // let scale = new ScaleLine();
+    // this.map.addControl(scale);
+    let viewPort = this.map.getViewport();
+    viewPort.appendChild(document.getElementById("rotate"));
     for (let i = 0, len = this.mapType.length; i < len; i++) {
       this.mapType[i] = addLayer(
         "Tile",
