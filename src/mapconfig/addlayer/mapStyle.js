@@ -114,7 +114,6 @@ export function createArrowStyle(feature) {
     let dx = end[0] - start[0];
     let dy = end[1] - start[1];
     let rotation = Math.atan2(dy, dx);
-
     styles.push(
       new Style({
         geometry: new Point(end),

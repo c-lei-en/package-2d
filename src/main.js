@@ -2,7 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "ant-design-vue/dist/antd.css";
+import Antd from "ant-design-vue"; // 引入Ant Design Vue组件
+import "ant-design-vue/dist/antd.css"; // 引入Ant Design Vue样式
+Vue.use(Antd); //挂载到vue中
 import "ol/ol.css";
 import "@/styles/index.scss";
 

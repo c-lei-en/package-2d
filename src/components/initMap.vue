@@ -2,7 +2,7 @@
   <div id="map" style="height:100%;width:100%">
     <rotate :map="map"></rotate>
     <!-- <arrow-line :map="map"></arrow-line> -->
-    <convert-map :dtmapNameList="mapType"></convert-map>
+    <convert-map :dtmapNameList="dtmapNameList"></convert-map>
   </div>
 </template>
 
@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       map: null,
-      mapList: []
+      mapList: [],
+      dtmapNameList: []
     };
   },
   watch: {
@@ -44,7 +45,7 @@ export default {
         this.mapList[i].value.setVisible(this.mapType[i].visible);
         this.map.addLayer(this.mapList[i].value);
       }
-      console.log(this.mapList);
+      this.dtmapNameList = this.mapList;
     }
   },
   mounted() {
