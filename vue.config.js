@@ -75,7 +75,9 @@ module.exports = {
     // 为预处理器的 loader 传递自定义选项。比如传递给
     // sass-loader 时，使用 `{ sass: { ... } }`。
     loaderOptions: {
-      scss: {}
+      scss: {
+        prependData: `@import "~@/styles/variables.scss";@import "~@/styles/mixin.scss";`
+      }
     }
   }
 };

@@ -2,6 +2,7 @@
   <div id="map" style="height:100%;width:100%">
     <rotate :map="map"></rotate>
     <!-- <arrow-line :map="map"></arrow-line> -->
+    <convert-map :dtmapNameList="mapType"></convert-map>
   </div>
 </template>
 
@@ -13,10 +14,12 @@ import { Map, View } from "ol";
 import { defaults /**ScaleLine*/ } from "ol/control";
 import rotate from "./rotate";
 // import arrowLine from "./arrowLine";
+import convertMap from "./convertMap";
 export default {
   name: "initMap",
   components: {
-    rotate
+    rotate,
+    convertMap
     // arrowLine
   },
   props: {
@@ -24,8 +27,25 @@ export default {
   },
   data() {
     return {
-      map: null
+      map: null,
+      mapList: []
     };
+  },
+  watch: {
+    mapType() {
+      for (let i = 0, len = this.mapType.length; i < len; i++) {
+        this.mapList.push({
+          name: this.mapType[i].name,
+          value: addLayer(
+            "Tile",
+            createSource("XYZ", MapType[this.mapType[i].name])
+          )
+        });
+        this.mapList[i].value.setVisible(this.mapType[i].visible);
+        this.map.addLayer(this.mapList[i].value);
+      }
+      console.log(this.mapList);
+    }
   },
   mounted() {
     let view = new View({
@@ -46,14 +66,6 @@ export default {
     });
     // let scale = new ScaleLine();
     // this.map.addControl(scale);
-
-    for (let i = 0, len = this.mapType.length; i < len; i++) {
-      this.mapType[i] = addLayer(
-        "Tile",
-        createSource("XYZ", MapType[this.mapType[i]])
-      );
-      this.map.addLayer(this.mapType[i]);
-    }
   },
   methods: {}
 };
