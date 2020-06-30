@@ -1,6 +1,6 @@
 // 地图旋转组件
 <template>
-  <div class="rotate-control-custom">
+  <div class="rotate-control-custom" id="rotate">
     <button
       class="right2d-button-custom"
       @click="rotateClick('right', 90)"
@@ -27,9 +27,8 @@ export default {
     rotateClick(type, rotation) {
       let button = document.getElementsByClassName("center2d-button-custom")[0];
       rotationView(button, rotation, type, this.map);
+      this.map.getViewport().appendChild(document.getElementById("rotate"));
     }
   }
 };
 </script>
-
-<style></style>

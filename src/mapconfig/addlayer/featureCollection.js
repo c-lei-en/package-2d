@@ -9,8 +9,8 @@ export function featureCollection(arrList, projection = "EPSG:4326") {
     let point = new Feature({
       geometry: new Point(
         new fromLonLat([arrList[i].lon, arrList[i].lat], projection)
-      ),
-      name: arrList[i].name
+      )
+      // name: arrList[i].name
     });
     let srcAndColor = createSrcAndColor(arrList[i].level, arrList[i].type);
     point.setStyle(
