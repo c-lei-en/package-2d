@@ -118,9 +118,7 @@ function createSource(type, url, LAYERS) {
       });
       break;
     case "Vector": //用于通过坐标点创建要素
-      source = new Vector({
-        features: url
-      });
+      source = new Vector();
       break;
     default:
       break;

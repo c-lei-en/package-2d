@@ -1,5 +1,9 @@
-import { Fill, Circle, Style, Text, Icon } from "ol/style";
+import { Fill, Circle, Style, Text, Icon, Stroke } from "ol/style";
+import { Point } from "ol/geom";
 let padding = [3, 3, 3, 3];
+
+let arrowImage = require("@/assets/arrow.png");
+
 /**
  * 创建WFS要素样式
  * @param {*} feature 要素
@@ -86,4 +90,42 @@ export function createFeatureStyle(src, color, featureName, position = "left") {
       padding: padding
     })
   });
+}
+
+/**
+ * 创建带箭头的线的样式
+ * @export
+ * @param {*} src
+ * @param {*} feature
+ * @returns
+ */
+export function createArrowStyle(feature) {
+  let geometry = feature.getGeometry();
+  let styles = [
+    new Style({
+      stroke: new Stroke({
+        color: "#ffcc33",
+        width: 2
+      })
+    })
+  ];
+  // 遍历线条的每一段
+  geometry.forEachSegment(function(start, end) {
+    let dx = end[0] - start[0];
+    let dy = end[1] - start[1];
+    let rotation = Math.atan2(dy, dx);
+
+    styles.push(
+      new Style({
+        geometry: new Point(end),
+        image: new Icon({
+          src: arrowImage,
+          anchor: [0.75, 0.5],
+          rotateWithView: true,
+          rotation: -rotation
+        })
+      })
+    );
+  });
+  return styles;
 }

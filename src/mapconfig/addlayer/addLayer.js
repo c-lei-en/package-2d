@@ -1,5 +1,5 @@
 import { Tile, Image, Vector } from "ol/layer";
-import { createStyle } from "./mapStyle";
+import { createStyle, createArrowStyle } from "./mapStyle";
 
 /**
  * 创建地图图层
@@ -33,7 +33,8 @@ function addLayer(type, source) {
         break;
       case "Vector":
         layer = new Vector({
-          source: source
+          source: source,
+          style: createArrowStyle
         });
         break;
       default:

@@ -1,6 +1,7 @@
 <template>
   <div id="map" style="height:100%;width:100%">
-    <rotate :map="map" id="rotate"></rotate>
+    <rotate :map="map"></rotate>
+    <!-- <arrow-line :map="map"></arrow-line> -->
   </div>
 </template>
 
@@ -11,10 +12,12 @@ import createSource from "@/mapconfig/addlayer/mapSource";
 import { Map, View } from "ol";
 import { defaults /**ScaleLine*/ } from "ol/control";
 import rotate from "./rotate";
+// import arrowLine from "./arrowLine";
 export default {
   name: "initMap",
   components: {
     rotate
+    // arrowLine
   },
   props: {
     mapType: Array
@@ -43,8 +46,7 @@ export default {
     });
     // let scale = new ScaleLine();
     // this.map.addControl(scale);
-    let viewPort = this.map.getViewport();
-    viewPort.appendChild(document.getElementById("rotate"));
+
     for (let i = 0, len = this.mapType.length; i < len; i++) {
       this.mapType[i] = addLayer(
         "Tile",
