@@ -1,8 +1,10 @@
 <template>
   <div id="map" style="height:100%;width:100%">
     <rotate :map="map"></rotate>
+    <!-- 绘制带箭头的线 -->
     <!-- <arrow-line :map="map"></arrow-line> -->
-    <convert-map :dtmapNameList="dtmapNameList"></convert-map>
+    <!-- 控制地图显隐 -->
+    <!-- <convert-map :dtmapNameList="dtmapNameList"></convert-map> -->
   </div>
 </template>
 
@@ -14,12 +16,12 @@ import { Map, View } from "ol";
 import { defaults /**ScaleLine*/ } from "ol/control";
 import rotate from "./rotate";
 // import arrowLine from "./arrowLine";
-import convertMap from "./convertMap";
+// import convertMap from "./convertMap";
 export default {
   name: "initMap",
   components: {
-    rotate,
-    convertMap
+    rotate
+    // convertMap
     // arrowLine
   },
   props: {
