@@ -1,6 +1,5 @@
 <template>
   <div class=" change-tab">
-    <span class="divider-title">底图</span>
     <a-radio-group @change="onDtChange" class="self-radio" v-model="defaultMap">
       <a-radio
         class="self-radio-item"
@@ -52,8 +51,38 @@ export default {
   position: absolute;
   z-index: 1001;
   border-radius: $borderRadius;
-  width: 100%;
+  background-color: rgba(12, 76, 70, 0.9);
+  /* width: 100%; */
   font-size: $font-sm;
   @include flex-box(row, space-between, center);
+}
+
+.self-radio {
+  @include flex-box(column, null, flex-start);
+  .self-radio-item {
+    width: 100%;
+    padding-bottom: 10px;
+    color: $textColor;
+    @include flex-box(row-reverse, space-between);
+  }
+  .ant-radio-inner {
+    background-color: $transparent;
+  }
+  .ant-radio-checked {
+    .ant-radio-inner {
+      border-color: $green;
+      &::after {
+        background-color: $green;
+      }
+    }
+    &::after {
+      border-color: $green;
+    }
+  }
+  .ant-radio-wrapper:hover .ant-radio,
+  .ant-radio:hover .ant-radio-inner,
+  .ant-radio-input:focus + .ant-radio-inner {
+    border-color: $green;
+  }
 }
 </style>
