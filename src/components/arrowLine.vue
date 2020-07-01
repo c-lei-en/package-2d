@@ -7,7 +7,7 @@
 <script>
 import addLayer from "@/mapconfig/addlayer/addLayer";
 import createSource from "@/mapconfig/addlayer/mapSource";
-import Draw from "ol/interaction/Draw";
+import { createMapInteraction } from "@/mapconfig/interaction/interaction";
 export default {
   name: "arrowLine",
   props: {
@@ -24,10 +24,7 @@ export default {
   mounted() {
     this.source = createSource("Vector");
     this.layer = addLayer("Vector", this.source);
-    this.draw = new Draw({
-      source: this.source,
-      type: "LineString"
-    });
+    this.draw = createMapInteraction(this.source, "LineString");
   },
   methods: {
     arrowLineClick() {
@@ -55,7 +52,7 @@ export default {
   position: absolute;
   top: 5px;
   left: 10px;
-  height: 20px;
+  height: 30px;
   width: 60px;
   cursor: pointer;
   z-index: 1001;

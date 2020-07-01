@@ -1,5 +1,6 @@
 import { Fill, Circle, Style, Text, Icon, Stroke } from "ol/style";
 import { Point } from "ol/geom";
+import { LineString, Polygon } from "ol/geom";
 let padding = [3, 3, 3, 3];
 
 let arrowImage = require("@/assets/arrow.png");
@@ -109,22 +110,32 @@ export function createArrowStyle(feature) {
       })
     })
   ];
-  // 遍历线条的每一段
-  geometry.forEachSegment(function(start, end) {
-    let dx = end[0] - start[0];
-    let dy = end[1] - start[1];
-    let rotation = Math.atan2(dy, dx);
+  if (geometry instanceof Polygon) {
     styles.push(
       new Style({
-        geometry: new Point(end),
-        image: new Icon({
-          src: arrowImage,
-          anchor: [0.75, 0.5],
-          rotateWithView: true,
-          rotation: -rotation
+        fill: new Fill({
+          color: "rgba(255,255,255,0.2)"
         })
       })
     );
-  });
+  } else if (geometry instanceof LineString) {
+    // 遍历线条的每一段
+    geometry.forEachSegment(function(start, end) {
+      let dx = end[0] - start[0];
+      let dy = end[1] - start[1];
+      let rotation = Math.atan2(dy, dx);
+      styles.push(
+        new Style({
+          geometry: new Point(end),
+          image: new Icon({
+            src: arrowImage,
+            anchor: [0.75, 0.5],
+            rotateWithView: true,
+            rotation: -rotation
+          })
+        })
+      );
+    });
+  }
   return styles;
 }

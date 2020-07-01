@@ -5,6 +5,8 @@
     <!-- <arrow-line :map="map"></arrow-line> -->
     <!-- 控制地图显隐 -->
     <!-- <convert-map :dtmapNameList="dtmapNameList"></convert-map> -->
+    <!-- 测量 -->
+    <!-- <measure :map="map"></measure> -->
   </div>
 </template>
 
@@ -15,12 +17,14 @@ import createSource from "@/mapconfig/addlayer/mapSource";
 import { Map, View } from "ol";
 import { defaults /**ScaleLine*/ } from "ol/control";
 import rotate from "./rotate";
+// import measure from "./measure";
 // import arrowLine from "./arrowLine";
 // import convertMap from "./convertMap";
 export default {
   name: "initMap",
   components: {
     rotate
+    // measure
     // convertMap
     // arrowLine
   },
