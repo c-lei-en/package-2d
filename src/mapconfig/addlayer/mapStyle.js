@@ -1,9 +1,9 @@
 import { Fill, Circle, Style, Text, Icon, Stroke } from "ol/style";
-import { Point } from "ol/geom";
-import { LineString, Polygon } from "ol/geom";
+import { Point, LineString, Polygon } from "ol/geom";
 let padding = [3, 3, 3, 3];
 
 let arrowImage = require("@/assets/arrow.png");
+let address = require("@/assets/address.png");
 
 /**
  * 创建WFS要素样式
@@ -136,6 +136,16 @@ export function createArrowStyle(feature) {
         })
       );
     });
+  } else if (geometry instanceof Point) {
+    styles.push(
+      new Style({
+        image: new Icon({
+          src: address,
+          anchor: [0.5, 1],
+          scale: 0.1
+        })
+      })
+    );
   }
   return styles;
 }

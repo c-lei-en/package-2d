@@ -4,9 +4,13 @@
     <!-- 绘制带箭头的线 -->
     <!-- <arrow-line :map="map"></arrow-line> -->
     <!-- 控制地图显隐 -->
-    <!-- <convert-map :dtmapNameList="dtmapNameList"></convert-map> -->
+    <!-- <convert-map :dtmapNameList="mapList"></convert-map> -->
     <!-- 测量 -->
     <!-- <measure :map="map"></measure> -->
+    <!-- 创建缓冲区 -->
+    <!-- <buffer :map="map"></buffer> -->
+    <!-- 卷帘效果 -->
+    <swipe :map="map" :layer="swipeLayer"></swipe>
   </div>
 </template>
 
@@ -20,10 +24,14 @@ import rotate from "./rotate";
 // import measure from "./measure";
 // import arrowLine from "./arrowLine";
 // import convertMap from "./convertMap";
+// import buffer from "./buffer";
+import swipe from "./swipe";
 export default {
   name: "initMap",
   components: {
-    rotate
+    rotate,
+    swipe
+    // buffer
     // measure
     // convertMap
     // arrowLine
@@ -35,7 +43,7 @@ export default {
     return {
       map: null,
       mapList: [],
-      dtmapNameList: []
+      swipeLayer: null
     };
   },
   watch: {
@@ -51,7 +59,7 @@ export default {
         this.mapList[i].value.setVisible(this.mapType[i].visible);
         this.map.addLayer(this.mapList[i].value);
       }
-      this.dtmapNameList = this.mapList;
+      this.swipeLayer = this.mapList[1].value;
     }
   },
   mounted() {
