@@ -10,7 +10,7 @@
     <!-- 创建缓冲区 -->
     <!-- <buffer :map="map"></buffer> -->
     <!-- 卷帘效果 -->
-    <swipe :map="map" :layer="swipeLayer"></swipe>
+    <!-- <swipe :map="map" :layer="swipeLayer"></swipe> -->
   </div>
 </template>
 
@@ -25,12 +25,12 @@ import rotate from "./rotate";
 // import arrowLine from "./arrowLine";
 // import convertMap from "./convertMap";
 // import buffer from "./buffer";
-import swipe from "./swipe";
+// import swipe from "./swipe";
 export default {
   name: "initMap",
   components: {
-    rotate,
-    swipe
+    rotate
+    // swipe
     // buffer
     // measure
     // convertMap
