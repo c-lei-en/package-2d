@@ -1,5 +1,10 @@
-import { Fill, Circle, Style, Text, Icon } from "ol/style";
+import { Fill, Circle, Style, Text, Icon, Stroke } from "ol/style";
+import { Point, LineString, Polygon } from "ol/geom";
 let padding = [3, 3, 3, 3];
+
+let arrowImage = require("@/assets/arrow.png");
+let address = require("@/assets/address.png");
+
 /**
  * 创建WFS要素样式
  * @param {*} feature 要素
@@ -84,6 +89,84 @@ export function createFeatureStyle(src, color, featureName, position = "left") {
         color: color
       }),
       padding: padding
+    })
+  });
+}
+
+/**
+ * 创建带箭头的线的样式
+ * @export
+ * @param {*} feature
+ * @returns
+ */
+export function createArrowStyle(feature) {
+  let geometry = feature.getGeometry();
+  let styles = [
+    new Style({
+      stroke: new Stroke({
+        color: "#ffcc33",
+        width: 2
+      })
+    })
+  ];
+  if (geometry instanceof Polygon) {
+    styles.push(
+      new Style({
+        fill: new Fill({
+          color: "rgba(255,255,255,0.2)"
+        })
+      })
+    );
+  } else if (geometry instanceof LineString) {
+    // 遍历线条的每一段
+    geometry.forEachSegment(function(start, end) {
+      let dx = end[0] - start[0];
+      let dy = end[1] - start[1];
+      let rotation = Math.atan2(dy, dx);
+      styles.push(
+        new Style({
+          geometry: new Point(end),
+          image: new Icon({
+            src: arrowImage,
+            anchor: [0.75, 0.5],
+            rotateWithView: true,
+            rotation: -rotation
+          })
+        })
+      );
+    });
+  } else if (geometry instanceof Point) {
+    styles.push(
+      new Style({
+        image: new Icon({
+          src: address,
+          anchor: [0.5, 1],
+          scale: 0.1
+        })
+      })
+    );
+  }
+  return styles;
+}
+
+/**
+ * 创建聚合要素样式
+ * @export
+ * @param {*} feature 要素
+ * @returns
+ */
+export function createCluterStyle(feature) {
+  return new Style({
+    image: new Icon({
+      src: address,
+      anchor: [0.5, 1],
+      scale: 0.1
+    }),
+    text: new Text({
+      text: feature.get("features").length.toString(),
+      fill: new Fill({
+        color: "white"
+      })
     })
   });
 }

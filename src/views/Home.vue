@@ -13,8 +13,16 @@ export default {
   components: { initMap },
   data() {
     return {
-      mapNameList: ["SATELLITE_GOOGLE"]
+      mapNameList: []
     };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.mapNameList = [
+        { name: "谷歌卫星地图", visible: true },
+        { name: "蓝黑色矢量地图", visible: false }
+      ];
+    });
   }
 };
 </script>
