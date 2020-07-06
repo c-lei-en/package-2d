@@ -114,7 +114,7 @@ function createSource(type, url, LAYERS) {
       source = new Vector({
         format: new GeoJSON(),
         url: url,
-        strategy: bbox() //根据视图的范围和分辨率加载要素
+        strategy: bbox //根据视图的范围和分辨率加载要素
       });
       break;
     case "Vector": //用于通过坐标点创建要素

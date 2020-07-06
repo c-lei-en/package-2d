@@ -13,6 +13,8 @@
     <!-- <swipe :map="map" :layer="swipeLayer"></swipe> -->
     <!-- 聚合图层 -->
     <!-- <cluter-layer :map="map"></cluter-layer> -->
+    <!-- 热力图 -->
+    <!-- <heat-map :map="map"></heat-map> -->
   </div>
 </template>
 
@@ -29,10 +31,12 @@ import rotate from "./rotate";
 // import buffer from "./buffer";
 // import swipe from "./swipe";
 // import cluterLayer from "./cluterLayer";
+// import heatMap from "./heatMap";
 export default {
   name: "initMap",
   components: {
     rotate
+    // heatMap
     // cluterLayer
     // swipe
     // buffer
