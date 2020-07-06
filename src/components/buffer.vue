@@ -1,3 +1,4 @@
+// 创建缓冲区
 <template>
   <div class="buffer" id="buffer">
     <a-button-group id="buttonGroup">

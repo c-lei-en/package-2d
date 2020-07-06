@@ -1,3 +1,4 @@
+// 测量功能
 <template>
   <div id="map">
     <div v-for="(item, index) in measureTooltipElement" :key="index">

@@ -1,3 +1,4 @@
+// 卷帘功能
 <template>
   <div class="swipe">
     卷帘:<input
@@ -22,10 +23,11 @@ export default {
   watch: {
     layer() {
       let swipe = document.getElementById("swipe");
+
+      // 在图层渲染之前触发
       this.layer.on("prerender", event => {
         let ctx = event.context;
         let mapSize = this.map.getSize();
-
         let width = mapSize[0] * (swipe.value / 100);
         let tl = getRenderPixel(event, [width, 0]);
         let tr = getRenderPixel(event, [mapSize[0], 0]);
@@ -41,10 +43,14 @@ export default {
         ctx.closePath();
         ctx.clip();
       });
+
+      // 在图层渲染之后触发
       this.layer.on("postrender", event => {
         let ctx = event.context;
         ctx.restore();
       });
+
+      // 监听range控件，当range的值变化时触发地图渲染
       swipe.addEventListener(
         "input",
         () => {

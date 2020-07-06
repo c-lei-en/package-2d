@@ -1,3 +1,4 @@
+// 画带箭头的线
 <template>
   <button class="arrowLine" id="arrowLine" @click="arrowLineClick">
     {{ isActive }}

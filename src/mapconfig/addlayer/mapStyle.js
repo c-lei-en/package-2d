@@ -96,7 +96,6 @@ export function createFeatureStyle(src, color, featureName, position = "left") {
 /**
  * 创建带箭头的线的样式
  * @export
- * @param {*} src
  * @param {*} feature
  * @returns
  */
