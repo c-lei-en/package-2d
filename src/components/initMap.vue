@@ -11,6 +11,8 @@
     <!-- <buffer :map="map"></buffer> -->
     <!-- 卷帘效果 -->
     <!-- <swipe :map="map" :layer="swipeLayer"></swipe> -->
+    <!-- 聚合图层 -->
+    <!-- <cluter-layer :map="map"></cluter-layer> -->
   </div>
 </template>
 
@@ -26,10 +28,12 @@ import rotate from "./rotate";
 // import convertMap from "./convertMap";
 // import buffer from "./buffer";
 // import swipe from "./swipe";
+// import cluterLayer from "./cluterLayer";
 export default {
   name: "initMap",
   components: {
     rotate
+    // cluterLayer
     // swipe
     // buffer
     // measure

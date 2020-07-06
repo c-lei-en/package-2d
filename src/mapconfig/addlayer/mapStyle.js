@@ -148,3 +148,25 @@ export function createArrowStyle(feature) {
   }
   return styles;
 }
+
+/**
+ * 创建聚合要素样式
+ * @export
+ * @param {*} feature 要素
+ * @returns
+ */
+export function createCluterStyle(feature) {
+  return new Style({
+    image: new Icon({
+      src: address,
+      anchor: [0.5, 1],
+      scale: 0.1
+    }),
+    text: new Text({
+      text: feature.get("features").length.toString(),
+      fill: new Fill({
+        color: "white"
+      })
+    })
+  });
+}
