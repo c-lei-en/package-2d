@@ -60,6 +60,7 @@ export default {
             createBuffer(type, ev.feature.getGeometry().getCoordinates(), 200)
           )
         );
+        this.$emit("getFeature", this.source.getFeatures()[0].getGeometry());
       });
     }
   }

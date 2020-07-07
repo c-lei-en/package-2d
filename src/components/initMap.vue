@@ -8,7 +8,7 @@
     <!-- 测量 -->
     <!-- <measure :map="map"></measure> -->
     <!-- 创建缓冲区 -->
-    <!-- <buffer :map="map"></buffer> -->
+    <buffer :map="map" @getFeature="getFeature"></buffer>
     <!-- 卷帘效果 -->
     <!-- <swipe :map="map" :layer="swipeLayer"></swipe> -->
     <!-- 聚合图层 -->
@@ -17,6 +17,8 @@
     <!-- <heat-map :map="map"></heat-map> -->
     <!-- 点击查询 -->
     <!-- <query-click :map="map"></query-click> -->
+    <!--  -->
+    <query-spatial :map="map" :geom="geom"></query-spatial>
   </div>
 </template>
 
@@ -30,20 +32,22 @@ import rotate from "./rotate";
 // import measure from "./measure";
 // import arrowLine from "./arrowLine";
 // import convertMap from "./convertMap";
-// import buffer from "./buffer";
+import buffer from "./buffer";
 // import swipe from "./swipe";
 // import cluterLayer from "./cluterLayer";
 // import heatMap from "./heatMap";
 // import queryClick from "./queryClick";
+import querySpatial from "./querySpatial";
 export default {
   name: "initMap",
   components: {
-    rotate
+    rotate,
+    querySpatial,
     // queryClick
     // heatMap
     // cluterLayer
     // swipe
-    // buffer
+    buffer
     // measure
     // convertMap
     // arrowLine
@@ -55,7 +59,8 @@ export default {
     return {
       map: null,
       mapList: [],
-      swipeLayer: null
+      swipeLayer: null,
+      geom: null
     };
   },
   watch: {
@@ -94,7 +99,11 @@ export default {
     // let scale = new ScaleLine();
     // this.map.addControl(scale);
   },
-  methods: {}
+  methods: {
+    getFeature(geom) {
+      this.geom = geom;
+    }
+  }
 };
 </script>
 
