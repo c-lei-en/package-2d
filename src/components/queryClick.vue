@@ -8,10 +8,18 @@
 <script>
 import addLayer from "@/mapconfig/addlayer/addLayer";
 import createSource from "@/mapconfig/addlayer/mapSource";
+import { featureClicked } from "@/mapconfig/query/queryClick";
 export default {
   name: "arrowLine",
   props: {
     map: Object
+  },
+  watch: {
+    map() {
+      this.map.on("singleclick", ev => {
+        console.log(featureClicked("Wfs", this.map, ev));
+      });
+    }
   },
   data() {
     return {
@@ -30,31 +38,6 @@ export default {
   methods: {
     heatmapClick() {
       this.map.addLayer(this.layer);
-      this.map.on("singleclick", e => {
-        let pixel = this.map.getEventPixel(e.originalEvent);
-        let feature = this.map.forEachFeatureAtPixel(pixel, function(feature) {
-          return feature;
-        });
-        if (feature != undefined) {
-          console.log(feature);
-        }
-      });
-
-      // wms服务的点击查询
-      //   this.map.on("singleclick", evt => {
-      //   let viewResolution = this.map.getView().getResolution();
-      //   let url = this.source.getFeatureInfoUrl(
-      //     evt.coordinate,
-      //     viewResolution,
-      //     "EPSG:4326",
-      //     { INFO_FORMAT: "application/json" }
-      //   );
-      //   if (url) {
-      //     axios.get(url).then(response => {
-      //       console.log(response.data);
-      //     });
-      //   }
-      // });
     }
   }
 };
