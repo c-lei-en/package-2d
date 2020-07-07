@@ -15,6 +15,8 @@
     <!-- <cluter-layer :map="map"></cluter-layer> -->
     <!-- 热力图 -->
     <!-- <heat-map :map="map"></heat-map> -->
+    <!-- 点击查询 -->
+    <!-- <query-click :map="map"></query-click> -->
   </div>
 </template>
 
@@ -32,10 +34,12 @@ import rotate from "./rotate";
 // import swipe from "./swipe";
 // import cluterLayer from "./cluterLayer";
 // import heatMap from "./heatMap";
+// import queryClick from "./queryClick";
 export default {
   name: "initMap",
   components: {
     rotate
+    // queryClick
     // heatMap
     // cluterLayer
     // swipe
