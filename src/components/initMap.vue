@@ -8,11 +8,19 @@
     <!-- 测量 -->
     <!-- <measure :map="map"></measure> -->
     <!-- 创建缓冲区 -->
-    <!-- <buffer :map="map"></buffer> -->
+    <!-- <buffer :map="map" @getFeature="getFeature"></buffer> -->
     <!-- 卷帘效果 -->
     <!-- <swipe :map="map" :layer="swipeLayer"></swipe> -->
     <!-- 聚合图层 -->
     <!-- <cluter-layer :map="map"></cluter-layer> -->
+    <!-- 热力图 -->
+    <!-- <heat-map :map="map"></heat-map> -->
+    <!-- 点击查询 -->
+    <!-- <query-click :map="map"></query-click> -->
+    <!-- 空间查询 -->
+    <!-- <query-spatial :map="map" :geom="geom"></query-spatial> -->
+    <!-- 根据坐标构建要素的缓冲区查询 -->
+    <!-- <vector-query :map="map" :geom="geom"></vector-query> -->
   </div>
 </template>
 
@@ -29,16 +37,24 @@ import rotate from "./rotate";
 // import buffer from "./buffer";
 // import swipe from "./swipe";
 // import cluterLayer from "./cluterLayer";
+// import heatMap from "./heatMap";
+// import queryClick from "./queryClick";
+// import querySpatial from "./querySpatial";
+// import vectorQuery from "./vectorQuery";
 export default {
   name: "initMap",
   components: {
+    // querySpatial,
+    // queryClick,
+    // heatMap,
+    // cluterLayer,
+    // swipe,
+    // buffer,
+    // vectorQuery,
+    // measure,
+    // convertMap,
+    // arrowLine,
     rotate
-    // cluterLayer
-    // swipe
-    // buffer
-    // measure
-    // convertMap
-    // arrowLine
   },
   props: {
     mapType: Array
@@ -47,7 +63,8 @@ export default {
     return {
       map: null,
       mapList: [],
-      swipeLayer: null
+      swipeLayer: null,
+      geom: null
     };
   },
   watch: {
@@ -86,7 +103,11 @@ export default {
     // let scale = new ScaleLine();
     // this.map.addControl(scale);
   },
-  methods: {}
+  methods: {
+    getFeature(geom) {
+      this.geom = geom;
+    }
+  }
 };
 </script>
 

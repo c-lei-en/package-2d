@@ -1,4 +1,4 @@
-import { Tile, Image, Vector } from "ol/layer";
+import { Tile, Image, Vector, Heatmap } from "ol/layer";
 import { createStyle, createArrowStyle, createCluterStyle } from "./mapStyle";
 
 /**
@@ -41,6 +41,13 @@ function addLayer(type, source) {
         layer = new Vector({
           source: source,
           style: createCluterStyle
+        });
+        break;
+      case "heatMap":
+        layer = new Heatmap({
+          source: source,
+          blur: 20,
+          radius: 20
         });
         break;
       default:
