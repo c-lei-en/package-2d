@@ -15,6 +15,8 @@ let MapType = {
   谷歌卫星地图:
     "http://mt2.google.cn/vt/lyrs=y&hl=zh-CN&gl=CN&src=app&x={x}&y={y}&z={z}&s=G", //谷歌卫星地图
   蓝黑色矢量地图:
-    "http://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}" //GeoQ提供的蓝黑色矢量地图
+    "http://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}", //GeoQ提供的蓝黑色矢量地图
+  高德路网地图:
+    "https://wprd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=8&x={x}&y={y}&z={z}" //高德路网地图
 };
 export default MapType;
