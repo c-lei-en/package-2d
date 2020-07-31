@@ -21,6 +21,10 @@
     <!-- <query-spatial :map="map" :geom="geom"></query-spatial> -->
     <!-- 根据坐标构建要素的缓冲区查询 -->
     <!-- <vector-query :map="map" :geom="geom"></vector-query> -->
+    <!-- 添加迁徙图 -->
+    <!-- <migration-map :map="map"></migration-map> -->
+    <!-- 信息窗体 -->
+    <!-- <info-window :map="map"></info-window> -->
   </div>
 </template>
 
@@ -41,6 +45,8 @@ import rotate from "./rotate";
 // import queryClick from "./queryClick";
 // import querySpatial from "./querySpatial";
 // import vectorQuery from "./vectorQuery";
+// import migrationMap from "./migrationMap";
+// import infoWindow from "./infoWindow";
 export default {
   name: "initMap",
   components: {
@@ -54,6 +60,8 @@ export default {
     // measure,
     // convertMap,
     // arrowLine,
+    // migrationMap,
+    // infoWindow,
     rotate
   },
   props: {
