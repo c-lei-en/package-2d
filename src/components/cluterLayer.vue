@@ -11,7 +11,7 @@ import { featureCollection } from "@/mapconfig/addlayer/featureCollection";
 import createSource from "@/mapconfig/addlayer/mapSource";
 import { createCluterSource } from "@/mapconfig/clusterDataSource/clusterDataSource";
 export default {
-  name: "arrowLine",
+  name: "cluterLayer",
   props: {
     map: Object
   },

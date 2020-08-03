@@ -37,6 +37,10 @@ export default {
         this.map
           .getViewport()
           .appendChild(document.getElementById("arrowLine"));
+        this.draw.on("drawend", ev => {
+          this.$emit("drawLine", [ev.feature, this.layer]);
+          this.map.removeInteraction(this.draw);
+        });
       } else {
         this.source.clear();
         this.map.removeLayer(this.layer);

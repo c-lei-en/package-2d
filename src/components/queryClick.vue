@@ -1,6 +1,6 @@
 // 点击查询
 <template>
-  <button class="heatMapLayer" id="heatMapLayer" @click="heatmapClick">
+  <button class="queryClick" id="queryClick" @click="queryClick">
     添加点击查询
   </button>
 </template>
@@ -10,7 +10,7 @@ import addLayer from "@/mapconfig/addlayer/addLayer";
 import createSource from "@/mapconfig/addlayer/mapSource";
 import { featureClicked } from "@/mapconfig/query/queryClick";
 export default {
-  name: "arrowLine",
+  name: "queryClick",
   props: {
     map: Object
   },
@@ -36,7 +36,7 @@ export default {
     this.layer = addLayer("Vector", this.source);
   },
   methods: {
-    heatmapClick() {
+    queryClick() {
       this.map.addLayer(this.layer);
     }
   }
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.heatMapLayer {
+.queryClick {
   position: absolute;
   top: 5px;
   left: 10px;

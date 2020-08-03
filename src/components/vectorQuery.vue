@@ -12,7 +12,7 @@ import addLayer from "@/mapconfig/addlayer/addLayer";
 import Intersections from "@/mapconfig/intersections/intersections";
 import { PointArr, Point } from "@/mapconfig/math/point";
 export default {
-  name: "querySpatial",
+  name: "vectorQuery",
   props: {
     map: Object,
     geom: Object
