@@ -3,14 +3,7 @@
   <div class="markerAnimation">
     <label for="speed">
       speed:&nbsp;
-      <input
-        id="speed"
-        type="range"
-        min="10"
-        max="999"
-        step="10"
-        :value="speedValue"
-      />
+      <input id="speed" type="range" min="1" max="100" step="10" value="60" />
     </label>
     <a-button-group id="buttonGroup">
       <a-button
@@ -37,24 +30,21 @@ export default {
     map: Object,
     animationList: Array
   },
-  watch: {
-    animationList() {
+  data() {
+    return {
+      markerClass: null
+    };
+  },
+  mounted() {},
+  methods: {
+    startAnimation() {
+      let speedValue = document.getElementById("speed").value;
       this.markerClass = new markerAnimation(
         this.map,
         this.animationList[0],
         this.animationList[1],
-        this.speedValue
+        speedValue
       );
-    }
-  },
-  data() {
-    return {
-      markerClass: null,
-      speedValue: 60
-    };
-  },
-  methods: {
-    startAnimation() {
       this.markerClass.startAnimation();
     },
     stopAnimation() {
