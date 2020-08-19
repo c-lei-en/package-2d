@@ -2,7 +2,7 @@
   <div id="map" style="height:100%;width:100%">
     <rotate :map="map"></rotate>
     <!-- 绘制带箭头的线 -->
-    <!-- <arrow-line :map="map"></arrow-line> -->
+    <arrow-line :map="map" @drawLine="drawLine"></arrow-line>
     <!-- 控制地图显隐 -->
     <!-- <convert-map :dtmapNameList="mapList"></convert-map> -->
     <!-- 测量 -->
@@ -21,6 +21,15 @@
     <!-- <query-spatial :map="map" :geom="geom"></query-spatial> -->
     <!-- 根据坐标构建要素的缓冲区查询 -->
     <!-- <vector-query :map="map" :geom="geom"></vector-query> -->
+    <!-- 添加迁徙图 -->
+    <!-- <migration-map :map="map"></migration-map> -->
+    <!-- 信息窗体 -->
+    <!-- <info-window :map="map"></info-window> -->
+    <!--  -->
+    <marker-animation
+      :map="map"
+      :animationList="animationList"
+    ></marker-animation>
   </div>
 </template>
 
@@ -30,9 +39,10 @@ import addLayer from "@/mapconfig/addlayer/addLayer";
 import createSource from "@/mapconfig/addlayer/mapSource";
 import { Map, View } from "ol";
 import { defaults /**ScaleLine*/ } from "ol/control";
+import { defaults as interactionDefaults } from "ol/interaction";
 import rotate from "./rotate";
 // import measure from "./measure";
-// import arrowLine from "./arrowLine";
+import arrowLine from "./arrowLine";
 // import convertMap from "./convertMap";
 // import buffer from "./buffer";
 // import swipe from "./swipe";
@@ -41,6 +51,9 @@ import rotate from "./rotate";
 // import queryClick from "./queryClick";
 // import querySpatial from "./querySpatial";
 // import vectorQuery from "./vectorQuery";
+// import migrationMap from "./migrationMap";
+// import infoWindow from "./infoWindow";
+import markerAnimation from "./markerAnimation";
 export default {
   name: "initMap",
   components: {
@@ -53,7 +66,10 @@ export default {
     // vectorQuery,
     // measure,
     // convertMap,
-    // arrowLine,
+    arrowLine,
+    // migrationMap,
+    // infoWindow,
+    markerAnimation,
     rotate
   },
   props: {
@@ -64,7 +80,8 @@ export default {
       map: null,
       mapList: [],
       swipeLayer: null,
-      geom: null
+      geom: null,
+      animationList: null
     };
   },
   watch: {
@@ -98,6 +115,9 @@ export default {
       controls: defaults({
         zoom: false,
         rotate: false
+      }),
+      interactions: new interactionDefaults({
+        doubleClickZoom: false
       })
     });
     // let scale = new ScaleLine();
@@ -106,6 +126,9 @@ export default {
   methods: {
     getFeature(geom) {
       this.geom = geom;
+    },
+    drawLine(arr) {
+      this.animationList = arr;
     }
   }
 };

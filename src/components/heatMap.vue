@@ -9,7 +9,7 @@
 import addLayer from "@/mapconfig/addlayer/addLayer";
 import createSource from "@/mapconfig/addlayer/mapSource";
 export default {
-  name: "arrowLine",
+  name: "heatMapLayer",
   props: {
     map: Object
   },

@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve --port 3000 --open -version 1.0",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@turf/buffer": "^5.1.5",
+    "@types/echarts": "^4.6.4",
     "@types/ol": "^6.3.1",
     "ant-design-vue": "^1.6.2",
     "axios": "^0.19.2",

@@ -4,6 +4,7 @@ let padding = [3, 3, 3, 3];
 
 let arrowImage = require("@/assets/arrow.png");
 let address = require("@/assets/address.png");
+let carImage = require("@/assets/car.png");
 
 /**
  * 创建WFS要素样式
@@ -136,15 +137,27 @@ export function createArrowStyle(feature) {
       );
     });
   } else if (geometry instanceof Point) {
-    styles.push(
-      new Style({
-        image: new Icon({
-          src: address,
-          anchor: [0.5, 1],
-          scale: 0.1
+    if (feature.get("type") == "icon") {
+      styles.push(
+        new Style({
+          image: new Icon({
+            src: address,
+            anchor: [0.5, 1],
+            scale: 0.1
+          })
         })
-      })
-    );
+      );
+    } else if (feature.get("type") == "geoMarker") {
+      styles.push(
+        new Style({
+          image: new Icon({
+            src: carImage,
+            anchor: [0.5, 1],
+            scale: 0.1
+          })
+        })
+      );
+    }
   }
   return styles;
 }
@@ -167,6 +180,16 @@ export function createCluterStyle(feature) {
       fill: new Fill({
         color: "white"
       })
+    })
+  });
+}
+
+export function createMarkerStyle(src, rotation) {
+  return new Style({
+    image: new Icon({
+      src: src,
+      scale: 1,
+      rotation: rotation
     })
   });
 }
